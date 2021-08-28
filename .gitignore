@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/OnlineGroceryStore/.vs/OnlineGroceryStore
+/OnlineGroceryStore/OnlineGroceryStore/bin/Debug/netcoreapp3.1
+/OnlineGroceryStore/OnlineGroceryStore/obj

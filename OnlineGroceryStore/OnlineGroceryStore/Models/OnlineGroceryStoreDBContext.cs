@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using OnlineGroceryStore.Models;
 
 #nullable disable
 
-namespace OnlineGroceryStore.Models
+namespace OnlineGroceryStore.AdminDetailsModel
 {
     public partial class OnlineGroceryStoreDBContext : DbContext
     {
@@ -17,8 +18,10 @@ namespace OnlineGroceryStore.Models
         {
         }
 
+        public virtual DbSet<Admindetail> Admindetails { get; set; }
         public virtual DbSet<Billdetail> Billdetails { get; set; }
         public virtual DbSet<Branddetail> Branddetails { get; set; }
+        //public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Productoffersdetail> Productoffersdetails { get; set; }
         public virtual DbSet<Productstockdetail> Productstockdetails { get; set; }
@@ -35,6 +38,36 @@ namespace OnlineGroceryStore.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Admindetail>(entity =>
+            {
+                entity.HasKey(e => e.AdminId)
+                    .HasName("PK__admindet__4A3006F7EE264F1E");
+
+                entity.ToTable("admindetails");
+
+                entity.Property(e => e.AdminId).HasColumnName("Admin_Id");
+
+                entity.Property(e => e.AdminEmail)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("Admin_Email");
+
+                entity.Property(e => e.AdminName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("Admin_Name");
+
+                entity.Property(e => e.AdminPassword)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("Admin_Password");
+
+                entity.Property(e => e.AdminPhoneno)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("Admin_Phoneno");
+            });
 
             modelBuilder.Entity<Billdetail>(entity =>
             {
@@ -90,6 +123,23 @@ namespace OnlineGroceryStore.Models
 
                 entity.Property(e => e.Totalnoofyearcontract).HasColumnName("totalnoofyearcontract");
             });
+
+            //modelBuilder.Entity<Category>(entity =>
+            //{
+            //    entity.HasNoKey();
+
+            //    entity.ToTable("category");
+
+            //    entity.Property(e => e.CategoryName)
+            //        .HasMaxLength(50)
+            //        .IsUnicode(false)
+            //        .HasColumnName("category_name");
+
+            //    entity.Property(e => e.SubCategory)
+            //        .HasMaxLength(30)
+            //        .IsUnicode(false)
+            //        .HasColumnName("Sub_Category");
+            //});
 
             modelBuilder.Entity<Customer>(entity =>
             {

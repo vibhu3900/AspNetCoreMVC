@@ -32,7 +32,7 @@ namespace OnlineGroceryStore
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                    name: "default",
-                   pattern: "{controller=Address}/{action=Index}/{id?}");
+                   pattern: "{controller=Auth}/{action=AdminLogin}/{id?}");
             });
 
 

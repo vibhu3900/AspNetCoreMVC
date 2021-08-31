@@ -112,10 +112,7 @@ namespace OnlineGroceryStore.Controllers
                 return View();
             }
         }
-        public IActionResult DashBoard()
-        {
-            return View();
-        }
+        
 
 
 

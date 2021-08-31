@@ -66,6 +66,63 @@ namespace OnlineGroceryStore.Controllers
 
 
 
+
+        
+
+        public IActionResult CustomerRegister()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CustomerRegister(Customer obj)
+        {
+            if (ModelState.IsValid)
+            {
+                OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
+                ogsd.Customers.Add(obj);
+                ogsd.SaveChanges();
+                return View("CustomerLogin");
+            }
+            return Json(obj);
+
+}
+
+        public ActionResult CustomerLogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CustomerLogin(Customer obj)
+        {
+
+
+
+
+            OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
+            var user = ogsd.Customers.Where(i => i.Custemail == obj.Custemail && i.CustPassword == obj.CustPassword).Count();
+
+
+
+            if (user > 0)
+            {
+                return RedirectToAction("DashBoard");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public IActionResult DashBoard()
+        {
+            return View();
+        }
+
+
+
+
+
+
+
     }
 
     //public ActionResult UserDashBoard()

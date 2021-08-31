@@ -9,7 +9,6 @@ namespace OnlineGroceryStore.Models
     {
         public Branddetail()
         {
-            Productstockdetails = new HashSet<Productstockdetail>();
         }
 
         public string Brandname { get; set; }
@@ -17,6 +16,5 @@ namespace OnlineGroceryStore.Models
         public int? Totalnoofyearcontract { get; set; }
         public byte[] Brandlogo { get; set; }
 
-        public virtual ICollection<Productstockdetail> Productstockdetails { get; set; }
-    }
+        }
 }

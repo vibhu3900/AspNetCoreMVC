@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OnlineGroceryStore.Models;
 using OnlineGroceryStore.AdminDetailsModel;
 
+
 namespace OnlineGroceryStore.Controllers
 {
     public class AuthController : Controller
@@ -18,8 +19,9 @@ namespace OnlineGroceryStore.Controllers
         public IActionResult AdminLogin()
         {
 
-            OnlineGroceryStoreDBContext ogsd =new OnlineGroceryStoreDBContext();
-            return View(ogsd.Admindetails.ToList());
+            //OnlineGroceryStoreDBContext ogsd =new OnlineGroceryStoreDBContext();
+            //return View(ogsd.Admindetails.ToList());
+            return View();
         }
 
     }

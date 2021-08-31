@@ -12,9 +12,10 @@ namespace OnlineGroceryStore.Controllers
     {
         public IActionResult Index()
         {
-            OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
+            //OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
             //Customer cust = ogsd.Customers.FirstOrDefault(i => i.Custid == id);
-            return View(ogsd.Customers.ToList());
+            //return View(ogsd.Customers.ToList());
+            return View();
         }
 
         public IActionResult Index1()

@@ -1,11 +1,12 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using OnlineGroceryStore.AdminDetailsModel;
 using OnlineGroceryStore.Models;
 
 #nullable disable
 
-namespace OnlineGroceryStore.AdminDetailsModel
+namespace OnlineGroceryStore.CategoryProduct
 {
     public partial class OnlineGroceryStoreDBContext : DbContext
     {
@@ -21,10 +22,9 @@ namespace OnlineGroceryStore.AdminDetailsModel
         public virtual DbSet<Admindetail> Admindetails { get; set; }
         public virtual DbSet<Billdetail> Billdetails { get; set; }
         public virtual DbSet<Branddetail> Branddetails { get; set; }
-        //public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Productoffersdetail> Productoffersdetails { get; set; }
-        public virtual DbSet<Productstockdetail> Productstockdetails { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -124,22 +124,14 @@ namespace OnlineGroceryStore.AdminDetailsModel
                 entity.Property(e => e.Totalnoofyearcontract).HasColumnName("totalnoofyearcontract");
             });
 
-            //modelBuilder.Entity<Category>(entity =>
-            //{
-            //    entity.HasNoKey();
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.ToTable("category");
 
-            //    entity.ToTable("category");
-
-            //    entity.Property(e => e.CategoryName)
-            //        .HasMaxLength(50)
-            //        .IsUnicode(false)
-            //        .HasColumnName("category_name");
-
-            //    entity.Property(e => e.SubCategory)
-            //        .HasMaxLength(30)
-            //        .IsUnicode(false)
-            //        .HasColumnName("Sub_Category");
-            //});
+                entity.Property(e => e.CategoryName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<Customer>(entity =>
             {
@@ -149,6 +141,10 @@ namespace OnlineGroceryStore.AdminDetailsModel
                 entity.ToTable("customers");
 
                 entity.Property(e => e.Custid).HasColumnName("custid");
+
+                entity.Property(e => e.CustPassword)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Custcontactno)
                     .HasMaxLength(20)
@@ -166,70 +162,37 @@ namespace OnlineGroceryStore.AdminDetailsModel
                     .HasColumnName("custname");
             });
 
-            modelBuilder.Entity<Productoffersdetail>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
-                entity.HasNoKey();
+                entity.ToTable("products");
 
-                entity.ToTable("productoffersdetails");
+                entity.Property(e => e.Productid).HasColumnName("productid");
 
-                entity.Property(e => e.Brandname)
-                    .HasMaxLength(50)
+                entity.Property(e => e.BrandName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Discount).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.NoOfItemsInStock)
+                    .HasMaxLength(100)
                     .IsUnicode(false)
-                    .HasColumnName("brandname");
+                    .HasColumnName("No_Of_Items_InStock");
 
-                entity.Property(e => e.Discount).HasColumnName("discount");
-
-                entity.Property(e => e.Productname)
-                    .HasMaxLength(50)
+                entity.Property(e => e.ProductDiscription)
+                    .HasMaxLength(300)
                     .IsUnicode(false)
-                    .HasColumnName("productname");
+                    .HasColumnName("Product_Discription");
 
-                entity.Property(e => e.Productspecialoffer)
-                    .HasMaxLength(400)
-                    .IsUnicode(false)
-                    .HasColumnName("productspecialoffer");
+                entity.Property(e => e.ProductImage).HasColumnType("image");
 
-                entity.HasOne(d => d.Productstockdetail)
-                    .WithMany()
-                    .HasForeignKey(d => new { d.Productname, d.Brandname })
-                    .HasConstraintName("fk_prod_brand");
-            });
+                entity.Property(e => e.ProductName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-            modelBuilder.Entity<Productstockdetail>(entity =>
-            {
-                entity.HasKey(e => new { e.Productname, e.Brandname })
-                    .HasName("pk_prod_brand");
-
-                entity.ToTable("productstockdetails");
-
-                entity.Property(e => e.Productname)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("productname");
-
-                entity.Property(e => e.Brandname)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("brandname");
-
-                entity.Property(e => e.Noofitemsavailable).HasColumnName("noofitemsavailable");
-
-                entity.Property(e => e.Productcategory)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("productcategory");
-
-                entity.Property(e => e.Productimage)
-                    .HasColumnType("image")
-                    .HasColumnName("productimage");
-
-                entity.Property(e => e.Productprice).HasColumnName("productprice");
-
-                entity.HasOne(d => d.BrandnameNavigation)
-                    .WithMany(p => p.Productstockdetails)
-                    .HasForeignKey(d => d.Brandname)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__productst__brand__5EBF139D");
+                entity.Property(e => e.ProductPrice)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

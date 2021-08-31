@@ -60,6 +60,20 @@ namespace OnlineGroceryStore.Controllers
         {
             return View();
         }
+        //public IActionResult DashBoard(Admindetail obj)
+        //{
+
+        //    return RedirectToAction("YourAccount");
+        //}
+
+
+
+        //public IActionResult YourAccount()
+        //{
+        //    return View();
+
+        //}
+
 
 
 

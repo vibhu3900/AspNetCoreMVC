@@ -33,6 +33,7 @@ namespace OnlineGroceryStore
                 endpoints.MapControllerRoute(
                    name: "default",
                    pattern: "{controller=Auth}/{action=AdminRegister}/{id?}");
+
             });
 
 

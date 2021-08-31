@@ -11,5 +11,6 @@ namespace OnlineGroceryStore.Models
         public string Custname { get; set; }
         public string Custemail { get; set; }
         public string Custcontactno { get; set; }
+        public string CustPassword { get; set; }
     }
 }

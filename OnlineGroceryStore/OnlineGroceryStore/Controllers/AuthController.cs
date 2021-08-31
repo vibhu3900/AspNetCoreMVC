@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,6 @@ namespace OnlineGroceryStore.Controllers
     public class AuthController : Controller
     {
 
-
         public IActionResult Index()
         {
             return View();
@@ -23,9 +22,11 @@ namespace OnlineGroceryStore.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult AdminRegister(Admindetail obj)
         {
+
             if (ModelState.IsValid)
             {
                 OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
@@ -61,10 +62,7 @@ namespace OnlineGroceryStore.Controllers
         {
             return View();
         }
-
-
-
-
+        
 
 
         

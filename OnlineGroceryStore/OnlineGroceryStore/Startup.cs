@@ -26,13 +26,14 @@ namespace OnlineGroceryStore
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                    name: "default",
-                   pattern: "{controller=Auth}/{action=CustomerRegister}/{id?}");
+                   pattern: "{controller=Auth}/{action=AdminRegister}/{id?}");
+
             });
 
 

@@ -6,11 +6,27 @@ using System.Threading.Tasks;
 using OnlineGroceryStore.Models;
 using OnlineGroceryStore.AdminDetailsModel;
 using OnlineGroceryStore.CategoryProduct;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineGroceryStore.Controllers
 {
+
+
     public class AuthController : Controller
     {
+        private readonly IConfiguration config;
+
+        public AuthController(IConfiguration config)
+        {
+            this.config = config;
+        }
+
+
+        //============================
 
         public IActionResult Index()
         {
@@ -37,6 +53,7 @@ namespace OnlineGroceryStore.Controllers
             return Json(obj);
 
         }
+        
         public ActionResult AdminLogin()
         {
             return View();
@@ -62,10 +79,10 @@ namespace OnlineGroceryStore.Controllers
         {
             return View();
         }
-        
 
 
-        
+
+
 
         public IActionResult CustomerRegister()
         {
@@ -83,7 +100,7 @@ namespace OnlineGroceryStore.Controllers
             }
             return Json(obj);
 
-}
+        }
 
         public ActionResult CustomerLogin()
         {
@@ -110,10 +127,74 @@ namespace OnlineGroceryStore.Controllers
                 return View();
             }
         }
+
+
+
+        //===========================================
+
+
         
 
+        [HttpPost]
+        public async Task<IActionResult> ValidateUser(Admindetail obj)
+        {
+            if (ModelState.IsValid)
+            {
+                //        var data = config.GetSection("Users");
+                //        for (int i = 0; i < data.GetChildren().Count(); i++)
+                //        {
+                //            string uname = data.GetChildren().ToList()[i].GetSection("Username").Value;
+                //            string pass = data.GetChildren().ToList()[i].GetSection("Password").Value;
+                //            string role = data.GetChildren().ToList()[i].GetSection("Role").Value;
+                //            if (uname == obj.UserName && pass == obj.Pass)
+                //            {
+                //                var claims = new List<Claim>() {
+                //             new Claim(ClaimTypes.Name,obj.UserName),
+                //              new Claim(ClaimTypes.Role,role)
+                //            };
+                //                var claimIdentity = new ClaimsIdentity(claims,
+                //                    CookieAuthenticationDefaults.AuthenticationScheme);
+                //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                //                         new ClaimsPrincipal(claimIdentity));
+                //                return RedirectToAction("Index", "Home");
 
-
+                //            }
+                //        }
+                OnlineGroceryStoreDBContext dbx = new OnlineGroceryStoreDBContext();
+                Admindetail u1 = dbx.Admindetails.
+                    FirstOrDefault(i => i.AdminEmail == obj.AdminEmail &&
+                    i.AdminPassword == obj.AdminPassword);
+                if (u1 == null)
+                {
+                    ModelState.AddModelError("", "Invalid Username & Password");
+                    return View("AdminLogin");
+                }
+                else
+                {
+                    var claims = new List<Claim>()
+                    {
+                                     new Claim(ClaimTypes.Email,obj.AdminEmail),
+                                      new Claim(ClaimTypes.Role,u1.AdminPhoneno)
+                                    };
+                    var claimIdentity = new ClaimsIdentity(claims,
+                        CookieAuthenticationDefaults.AuthenticationScheme);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                                             new ClaimsPrincipal(claimIdentity));
+                    return RedirectToAction("DashBoard", "Auth");
+                }
+            }
+            else
+                return View("AdminLogin");
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("AdminLogin", "Auth");
+        }
+        public IActionResult NotFound()
+        {
+            return View();
+        }
 
 
 

@@ -1,5 +1,5 @@
-﻿@model IEnumerable<OnlineGroceryStore.Models.Customer>
-
+﻿@model IEnumerable<OnlineGroceryStore.CategoryProduct.Addre>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
 }
@@ -10,49 +10,115 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Custid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Custname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Custemail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Custcontactno)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Custname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Custemail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Custcontactno)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Custid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Custid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Custid">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <p>
+        <a asp-action="Addr">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mobile)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pincode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FlatNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bulding)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Company)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Apartment)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Area)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Street)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Village)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Landmark)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Town)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.State)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mobile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pincode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FlatNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bulding)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apartment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Street)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Village)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Landmark)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Town)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Customerid">Edit</a> |
+
+                        <a asp-action="Delete" asp-route-id="@item.Customerid">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 </html>

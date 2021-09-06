@@ -1,0 +1,43 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a asp-action="Dashboard" asp-controller="Auth">Home</a></li>
+                        <li><a asp-action="index" asp-controller="Products">Products</a></li>
+                        <li><a asp-action="index" asp-controller="Categorys">Category</a></li>
+                        <li><a href="#">Order</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" asp-controller="Auth" asp-action="AdminLogin">
+                        <li><a ><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+                        <li><a asp-controller="Auth" asp-action="Logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+
+   
+</body>
+</html>

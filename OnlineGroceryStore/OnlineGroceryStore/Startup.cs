@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +18,13 @@ namespace OnlineGroceryStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAuthentication
+               (CookieAuthenticationDefaults.AuthenticationScheme)
+               .AddCookie(option => {
+
+                   option.LoginPath = "/Auth/AdminLogin";
+                   option.AccessDeniedPath = "/Account/NotFound";
+               });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,10 +37,14 @@ namespace OnlineGroceryStore
             app.UseStaticFiles();
             app.UseRouting();
 
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                    name: "default",
-                   pattern: "{controller=Auth}/{action=DashBoard}/{id?}");
+                   pattern: "{controller=Auth}/{action=AdminLogin}/{id?}");
 
             });
 

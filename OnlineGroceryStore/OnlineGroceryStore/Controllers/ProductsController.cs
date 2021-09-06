@@ -1,20 +1,25 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineGroceryStore.CategoryProduct;
-
+using System;
 using System.IO;
 using System.Linq;
 
 namespace OnlineGroceryStore.Controllers
 {
+
     public class ProductsController : Controller
     {
         // GET: ProductsController
-        public ActionResult Index()
+        
+        public ActionResult Index(int PageNumber = 1)
         {
             OnlineGroceryStoreDBContext ogsd =new OnlineGroceryStoreDBContext();
-
-            return View(ogsd.Products.ToList());
+            var products = ogsd.Products.ToList();
+            ViewBag.TotalPages = Math.Ceiling(products.Count() / 10.0);
+            ViewBag.PageNumber = PageNumber;
+            products = products.Skip((PageNumber - 1) * 10).Take(5).ToList();
+            return View(products);
         }
 
         //GET: ProductsController/Details/5
@@ -22,7 +27,7 @@ namespace OnlineGroceryStore.Controllers
         {
             return View();
         }
-
+        
         // GET: ProductsController/Create
         public ActionResult Create()
         {
@@ -63,7 +68,7 @@ namespace OnlineGroceryStore.Controllers
                 return View(prod);
             
             
-            return View();
+            
         }
 
         // POST: ProductsController/Edit/5
@@ -76,11 +81,28 @@ namespace OnlineGroceryStore.Controllers
 
                 OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
                 Product prod = ogsd.Products.FirstOrDefault(i => i.Productid == obj.Productid);
-                using (MemoryStream ms = new MemoryStream())
+
+
+                if (imgFiles != null)
                 {
-                    imgFiles.CopyTo(ms);
-                    byte[] bt = ms.ToArray();
-                    obj.ProductImage = bt;
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        imgFiles.CopyTo(ms);
+                        byte[] bt = ms.ToArray();
+                        obj.ProductImage = bt;
+                        prod.ProductName = obj.ProductName;
+                        prod.BrandName = obj.BrandName;
+                        prod.ProductPrice = obj.ProductPrice;
+                        prod.NoOfItemsInStock = obj.NoOfItemsInStock;
+                        prod.ProductImage = obj.ProductImage;
+                        prod.ProductDiscription = obj.ProductDiscription;
+                        prod.Discount = obj.Discount;
+                        prod.CategoryId = obj.CategoryId;
+                        ogsd.SaveChanges();
+                    }
+                }
+                else
+                {
                     prod.ProductName = obj.ProductName;
                     prod.BrandName = obj.BrandName;
                     prod.ProductPrice = obj.ProductPrice;
@@ -91,7 +113,6 @@ namespace OnlineGroceryStore.Controllers
                     prod.CategoryId = obj.CategoryId;
                     ogsd.SaveChanges();
                 }
-
                 return RedirectToAction("Index");
             }
             catch

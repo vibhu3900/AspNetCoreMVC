@@ -1,105 +1,408 @@
-﻿@model IEnumerable<OnlineGroceryStore.CategoryProduct.Product>
+﻿
+
+@model IEnumerable<OnlineGroceryStore.CategoryProduct.Product>
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
 }
 
-<!DOCTYPE html>
 
+
+<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
-
+    <title>Grocery Store a Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Grocery Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- font-awesome icons -->
+    <link href="~/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script src="~/js/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/js/move-top.js"></script>
+    <script type="text/javascript" src="~/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
 </head>
+
 <body>
-    <div class="container ">
-        <a asp-action="Create">Create New</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <a asp-action="DashBoard" asp-controller="Auth">Back To Home</a>
+    <!-- header -->
+    <div class="agileits_header">
+        <div class="w3l_offers">
+            <a href="products.html">Today's special Offers !</a>
+        </div>
+        <div class="w3l_search">
+            <form action="#" method="post">
+                <input type="text" name="Product" value="Search a product..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
+                <input type="submit" value=" ">
+            </form>
+        </div>
+        <div class="product_list_header">
+            <form action="#" method="post" class="last">
+                <fieldset>
+                    <input type="hidden" name="cmd" value="_cart" />
+                    <input type="hidden" name="display" value="1" />
+                    <input type="submit" name="submit" value="Customer Site" class="button" />
+                </fieldset>
+            </form>
+        </div>
+        <div class="w3l_header_right">
+            <ul>
+                <li class="dropdown profile_details_drop">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
+                    <div class="mega-dropdown-menu">
+                        <div class="w3ls_vegetables">
+                            <ul class="dropdown-menu drp-mnu">
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="login.html">Sign Up</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="w3l_header_right1">
+            <h2><a href="mail.html">Contact Us</a></h2>
+        </div>
+        <div class="clearfix"> </div>
     </div>
-    <table class="table container">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.BrandName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductPrice)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NoOfItemsInStock)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductImage)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CategoryId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductDiscription)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Discount)
-                </th>
-                <th>
+    <!-- script-for sticky-nav -->
+    <script>
+        $(document).ready(function () {
+            var navoffeset = $(".agileits_header").offset().top;
+            $(window).scroll(function () {
+                var scrollpos = $(window).scrollTop();
+                if (scrollpos >= navoffeset) {
+                    $(".agileits_header").addClass("fixed");
+                } else {
+                    $(".agileits_header").removeClass("fixed");
+                }
+            });
 
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BrandName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductPrice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NoOfItemsInStock)
-                    </td>
-                    <td>
-                        @{
-                            byte[] bt = item.ProductImage;
-                            string str = Convert.ToBase64String(bt);
-                            var imgsrc = string.Format("data:image/jpg;base64,{0}", str);
-                            <img src="@imgsrc" width="100" height="100" alt="Gr8" />
+        });
+    </script>
+    <!-- //script-for sticky-nav -->
 
+
+
+
+
+
+    <div class="logo_products">
+        <div class="container">
+            <div class="w3ls_logo_products_left">
+                <h1><a asp-action="DashBoard" asp-controller="Auth"><span>Grocery</span> Store</a></h1>
+            </div>
+            <div class="w3ls_logo_products_left1">
+                <ul class="special_items">
+                    <li><a asp-action="Index" asp-controller="Categorys">Category</a><i>/</i></li>
+                    <li><a asp-action="Index" asp-controller="Products">Products</a><i>/</i></li>
+                    <li><a asp-action="Index" asp-controller="Brand">Brand</a><i>/</i></li>
+                    <li><a href="services.html">Services</a></li>
+                </ul>
+            </div>
+            <div class="w3ls_logo_products_left1">
+                <ul class="phone_email">
+                    <li><i class="fa fa-phone" aria-hidden="true"></i>(+0123) 234 567</li>
+                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">store@grocery.com</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- //header -->
+    <!--main content-->
+    <div class="" style="justify-content: center; ">
+        <img style="width: 100% ; height: 300px;" src="~/Image/gc.jpg" />
+    </div>
+
+    <div style="color: #e8e9eb; width: 100%; ">
+
+        <div class="container" style="margin-top:20px;">
+            <a style=" width: 115px; height: 25px; background: #4FC3A1; padding: 10px; text-align: center; border-radius: 5px; color: white;  " asp-action="Create">Create New</a>
+
+            <a style="width: 150px; height: 30px; background: #4FC3A1; padding: 10px; text-align: center; border-radius: 5px; color: white; " asp-action="DashBoard" asp-controller="Auth">Back To Home</a>
+
+        </div>
+        <div>
+            <h2 style="text-align: center; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; color: black; padding: 30px 0;">
+            Products List
+            </h2>
+            <div style="margin: 10px 70px 70px; box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 ); ">
+                <table style=" border-radius: 5px; font-size: 12px; font-weight: normal; border: none; border-collapse: collapse; width: 100%; max-width: 100%; background-color: white; ">
+                    <thead>
+                        <tr>
+                            <th style="padding: 20px .625em .625em .625em; height: 60px; vertical-align: middle; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; width: 120px; font-size: 13px; text-overflow: ellipsis; color: #ffffff; background: #4FC3A1; text-align: center; padding: 8px;">
+                                @Html.DisplayNameFor(model => model.Productid)
+                            </th>
+                            <th style="padding: 20px .625em .625em .625em; height: 60px; vertical-align: middle; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; width: 120px; font-size: 13px; text-overflow: ellipsis; color: #ffffff; background: #324960; text-align: center; padding: 8px;">
+                                @Html.DisplayNameFor(model => model.ProductName)
+                            </th>
+                            <th style="padding: 20px .625em .625em .625em; height: 60px; vertical-align: middle; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; width: 120px; font-size: 13px; text-overflow: ellipsis; color: #ffffff; background: #4FC3A1; text-align: center; padding: 8px;">
+                                @Html.DisplayNameFor(model => model.ProductPrice)
+                            </th>
+                            
+                            
+                            <th style="padding: 20px .625em .625em .625em; height: 60px; vertical-align: middle; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; width: 120px; font-size: 13px; text-overflow: ellipsis; color: #ffffff; background: #4FC3A1; text-align: center; padding: 8px;">
+                                @Html.DisplayNameFor(model => model.ProductDiscription)
+                            </th>
+                            
+                            <th style="padding: 20px .625em .625em .625em; height: 60px; vertical-align: middle; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; width: 120px; font-size: 13px; text-overflow: ellipsis; color: #ffffff; background: #4FC3A1; text-align: center; padding: 8px;">
+                                &nbsp;&nbsp;&nbsp;
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr style="">
+                                <td style="padding: 20px .625em .625em .625em;  vertical-align: middle; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; width: 120px; font-size: 13px; text-overflow: ellipsis; color: black; background: #F8F8F8; border-right: 1px solid #f8f8f8; font-size: 12px; text-align: center; padding: 8px; ">
+                                    @Html.DisplayFor(modelItem => item.CategoryId)
+                                </td>
+                                <td style="padding: 20px .625em .625em .625em; height: 60px; vertical-align: middle; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; width: 120px; font-size: 13px; text-overflow: ellipsis; color: black; text-align: center; padding: 8px; border-right: 1px solid #f8f8f8; font-size: 12px; ">
+                                    @Html.DisplayFor(modelItem => item.ProductName)
+                                </td>
+                                <td style="padding: 20px .625em .625em .625em; height: 60px; vertical-align: middle; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; width: 120px; font-size: 13px; text-overflow: ellipsis; color: black; background: #F8F8F8; border-right: 1px solid #f8f8f8; font-size: 12px; text-align: center; padding: 8px; ">
+                                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                                </td>
+                                
+                                <!--<td style="padding: 20px .625em .625em .625em; height: 60px; vertical-align: middle; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; width: 120px; font-size: 13px; text-overflow: ellipsis; color: black; background: #F8F8F8; border-right: 1px solid #f8f8f8; font-size: 12px; text-align: center; padding: 8px; ">-->
+                                    @*@{
+                                            byte[] bt = item.ProductImage;
+                                            string str = Convert.ToBase64String(bt);
+                                            var imgsrc = string.Format("data:image/jpg;base64,{0}", str);
+                                            <img src="@imgsrc" width="100" height="100" alt="Gr8" />
+
+                                        }*@
+                                <!--</td>-->
+                                
+                                <td style="padding: 20px .625em .625em .625em;   width: 120px; font-size: 13px;  color: black; background: #F8F8F8; text-align: center; padding: 8px; border-right: 1px solid #f8f8f8; font-size: 12px; ">
+                                    @Html.DisplayFor(modelItem => item.ProductDiscription)
+                                </td>
+                                
+
+
+                                <td style="padding: 20px .625em .625em .625em; height: 60px; vertical-align: middle; box-sizing: border-box; overflow-x: hidden; overflow-y: auto; width: 120px; font-size: 13px; text-overflow: ellipsis; color: black; border-right: 1px solid #f8f8f8; font-size: 12px; text-align: center; padding: 8px; ">
+                                    <a style="color:seagreen;" asp-action="Edit" asp-controller="Products" asp-route-id="@item.Productid">Edit</a> |
+                                    <a style="color:cornflowerblue;" asp-action="Details" asp-controller="Products" asp-route-id="@item.Productid">Detail</a> |
+                                    <a style="color:red;" asp-action="Delete" asp-controller="Products" asp-route-id="@item.Productid">Delete</a>
+                                </td>
+                            </tr>
                         }
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CategoryId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductDiscription)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Discount)
-                    </td>
-                    <td>
-                        <a style="" asp-action="Edit" asp-route-id="@item.Productid">Edit</a> 
-                        <a asp-action="Delete" asp-route-id="@item.Productid">Delete</a>
-                    </td>
-                </tr>
+
+
+                    <tbody>
+                </table>
+                <div style="margin-left:50px">
+                    @{
+                        double totalPages = ViewBag.TotalPages;
+                        <ul class="pagination">
+                            <li>
+                                @Html.ActionLink("Preview", "Index", new { PageNumber = ViewBag.PageNumber - 1 })
+                            </li>
+                            @for (int i = 1; i <= totalPages; i++)
+                            {
+                                @if (i == ViewBag.PageNumber)
+                                {
+                                    <li class="active">
+                                        @Html.ActionLink(i.ToString(), "Index", new { PageNumber = i })
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        @Html.ActionLink(i.ToString(), "Index", new { PageNumber = i })
+                                    </li>
+                                }
+
+                            }
+                            <li>
+                                @Html.ActionLink("Next", "Index", new { PageNumber = ViewBag.PageNumber + 1 })
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--//main content-->
+    <!-- newsletter -->
+    <div class="newsletter">
+        <div class="container">
+            <div class="w3agile_newsletter_left">
+                <h3>sign up for our newsletter</h3>
+            </div>
+            <div class="w3agile_newsletter_right">
+                <form action="#" method="post">
+                    <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                    <input type="submit" value="subscribe now">
+                </form>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- //newsletter -->
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-3 w3_footer_grid">
+                <h3>information</h3>
+                <ul class="w3_footer_grid_list">
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Best Deals</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="short-codes.html">Short Codes</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 w3_footer_grid">
+                <h3>policy info</h3>
+                <ul class="w3_footer_grid_list">
+                    <li><a href="faqs.html">FAQ</a></li>
+                    <li><a href="privacy.html">privacy policy</a></li>
+                    <li><a href="privacy.html">terms of use</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 w3_footer_grid">
+                <h3>what in stores</h3>
+                <ul class="w3_footer_grid_list">
+                    <li><a href="pet.html">Pet Food</a></li>
+                    <li><a href="frozen.html">Frozen Snacks</a></li>
+                    <li><a href="kitchen.html">Kitchen</a></li>
+                    <li><a href="products.html">Branded Foods</a></li>
+                    <li><a href="household.html">Households</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 w3_footer_grid">
+                <h3>twitter posts</h3>
+                <ul class="w3_footer_grid_list1">
+                    <li>
+                        <label class="fa fa-twitter" aria-hidden="true"></label><i>01 day ago</i><span>
+                            Non numquam <a href="#">http://sd.ds/13jklf#</a>
+                            eius modi tempora incidunt ut labore et
+                            <a href="#">http://sd.ds/1389kjklf#</a>quo nulla.
+                        </span>
+                    </li>
+                    <li>
+                        <label class="fa fa-twitter" aria-hidden="true"></label><i>02 day ago</i><span>
+                            Con numquam <a href="#">http://fd.uf/56hfg#</a>
+                            eius modi tempora incidunt ut labore et
+                            <a href="#">http://fd.uf/56hfg#</a>quo nulla.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+            <div class="agile_footer_grids">
+                <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+                    <div class="w3_footer_grid_bottom">
+                        <h4>100% secure payments</h4>
+                        <img src="~/images/card.png" alt=" " class="img-responsive" />
+                    </div>
+                </div>
+                <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+                    <div class="w3_footer_grid_bottom">
+                        <h5>connect with us</h5>
+                        <ul class="agileits_social_icons">
+                            <li><a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="wthree_footer_copy">
+                <p>© 2021 Grocery Store. All rights reserved | Design With <a href="">&#10084;</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- //footer -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <!-- //here ends scrolling icon -->
+    <script src="~/js/minicart.js"></script>
+    <script>
+        paypal.minicart.render();
+
+        paypal.minicart.cart.on('checkout', function (evt) {
+            var items = this.items(),
+                len = items.length,
+                total = 0,
+                i;
+
+            // Count the number of each item in the cart
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
             }
-        </tbody>
-    </table>
 
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+            if (total < 3) {
+                alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                evt.preventDefault();
+            }
+        });
 
-
+    </script>
 </body>
 </html>
+
+
+
+
+
+

@@ -1,0 +1,183 @@
+﻿@model OnlineGroceryStore.CategoryProduct.Addre
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Addr</title>
+
+</head>
+<body>
+
+    <br>
+    <div class="container-fluid text-center">
+        <h1>Add New Address</h1>
+        <div class="row content">
+            <div class="col-sm-12 ">
+
+                <div class="row">
+
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 text-left">
+                        <form class="form-horizontal" asp-action="Addr" asp-co method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Customerid" class="control-label col-sm-2"></label>
+                                <div class="col-sm-4">
+                                    <input asp-for="Customerid" class="form-control" />
+                                    <span asp-validation-for="Customerid" class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+
+                            <fieldset>
+
+                                <!-- Name-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="Name">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="Name" placeholder="enter name" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- mobile number-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="Mobile">Mobile</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" asp-for="Mobile" placeholder="enter mobile no." class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- Flat-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="FlatNo">Flat</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" asp-for="FlatNo" placeholder="enter Flat no." class="form-control">
+                                    </div>
+                                </div>
+
+
+                                <!-- building-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="Bulding">Building</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="Bulding" placeholder="building" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- company-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="Company">Company</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="Company" placeholder="company" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- apartment-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="Apartment">Apartment</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="Apartment" placeholder="apartment name" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- area-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="Area">Area</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="Area" placeholder="area name" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- street-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="Street">Street</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="Street" placeholder="street name" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- village-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="Village">Village</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="Village" placeholder="village name" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- Landmark-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="Landmark">Landmark</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="Landmark" placeholder="nearby Landmark" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- Pin code-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="Pincode">Pincode</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="Pincode" placeholder="6-digits [0-9] PIN code" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- City-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="City">City</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="City" placeholder="City" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- State-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" asp-for="State">State</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="State" placeholder="State" class="form-control">
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="form-group">
+
+                                    <div class="col-sm-4">
+
+                                        <a asp-action="Index">Back to List</a>
+
+                                    </div>
+                                    <div class="col-sm-4">
+
+                                        <button type="submit" class="btn btn-default btn-block">Cancel</button>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-primary btn-block">Save</button>
+
+                                    </div>
+
+                                </div>
+
+
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 text-left">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

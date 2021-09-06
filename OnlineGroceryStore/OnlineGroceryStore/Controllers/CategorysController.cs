@@ -1,22 +1,21 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using OnlineGroceryStore.AdminDetailsModel;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnlineGroceryStore.CategoryProduct;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace OnlineGroceryStore.Models
 {
     public class CategorysController : Controller
     {
         // GET: CategorysController
-        public ActionResult Index()
+        public ActionResult Index(int PageNumber=1)
         {
             OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
-
-            return View(ogsd.Categories.ToList());
+            var categories = ogsd.Categories.ToList();
+            ViewBag.TotalPages = Math.Ceiling(categories.Count() / 10.0);
+            ViewBag.PageNumber = PageNumber;
+            categories = categories.Skip((PageNumber-1)*10).Take(10).ToList();   
+            return View(categories);
         }
 
         // GET: CategorysController/Details/5

@@ -1,0 +1,147 @@
+﻿@model OnlineGroceryStore.CategoryProduct.Addre
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <title>Edit</title>
+</head>
+<body>
+    <br>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-12 ">
+
+                <h2> Edit Current Address</h2>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal" asp-action="Edit" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Customerid" />
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label col-sm-2">FullName</label>
+                                <div class="col-sm-10">
+                                    <input type="text" asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Mobile" class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Mobile" class="form-control" />
+                                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Pincode" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Pincode" class="form-control" />
+                                    <span asp-validation-for="Pincode" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FlatNo" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="FlatNo" class="form-control" />
+                                    <span asp-validation-for="FlatNo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Bulding" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Bulding" class="form-control" />
+                                    <span asp-validation-for="Bulding" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Company" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Company" class="form-control" />
+                                    <span asp-validation-for="Company" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Apartment" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Apartment" class="form-control" />
+                                    <span asp-validation-for="Apartment" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Area" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Area" class="form-control" />
+                                    <span asp-validation-for="Area" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Street" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Street" class="form-control" />
+                                    <span asp-validation-for="Street" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Village" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Village" class="form-control" />
+                                    <span asp-validation-for="Village" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Landmark" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Landmark" class="form-control" />
+                                    <span asp-validation-for="Landmark" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Town" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Town" class="form-control" />
+                                    <span asp-validation-for="Town" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="City" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="City" class="form-control" />
+                                    <span asp-validation-for="City" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="State" class="control-label  col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="State" class="form-control" />
+                                    <span asp-validation-for="State" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <input type="submit" class="btn btn-primary btn-block" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

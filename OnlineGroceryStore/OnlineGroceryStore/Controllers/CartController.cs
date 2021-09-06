@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OnlineGroceryStore.CategoryProduct;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,11 +11,68 @@ namespace OnlineGroceryStore.Controllers
 {
     public class CartController : Controller
     {
-        // GET: CartController
-        public ActionResult Index()
+
+        public IActionResult AddToCart(int id)
         {
-            return View();
+
+            OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
+            Product prod = ogsd.Products.FirstOrDefault(i => i.Productid == id);
+            return View(prod);
+
+
         }
+
+
+        [HttpPost]
+        public ActionResult AddToCart(Product obj, IFormFile imgFiles)
+        {
+            OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
+            Product Brd = ogsd.Products.FirstOrDefault(i => i.Productid== obj.Productid);
+
+            
+            
+
+            return RedirectToAction("Index");
+
+            //if (TempData["cart"] == null)
+            //{
+            //    List<Product> li = new List<Product>();
+
+
+
+            //    li.Add(id);
+            //    TempData["cart"] = li;
+            //    ViewBag.cart = li.Count();
+
+
+
+
+            //    TempData["count"] = 1;
+
+
+
+
+            //}
+            //else
+            //{
+            //    List<Product> li = (List<Product>)TempData["cart"];
+            //    li.Add(id);
+            //    TempData["cart"] = li;
+            //    ViewBag.cart = li.Count();
+            //    TempData["count"] = Convert.ToInt32(TempData["count"]) + 1;
+
+
+
+            //}
+            //return RedirectToAction("Index");
+
+
+
+
+        }
+
+
+
 
         // GET: CartController/Details/5
         public ActionResult Details(int id)

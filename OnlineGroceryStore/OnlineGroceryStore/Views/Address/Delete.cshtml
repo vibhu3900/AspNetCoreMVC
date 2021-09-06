@@ -1,0 +1,137 @@
+﻿@model OnlineGroceryStore.CategoryProduct.Addre
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>Delete Address</title>
+</head>
+<body>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Current Address</h4>
+        <br>
+        <div class="row">
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+
+
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Mobile)
+            </div>
+
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Mobile)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Pincode)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Pincode)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.FlatNo)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.FlatNo)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Bulding)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Bulding)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Company)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Company)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Apartment)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Apartment)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Area)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Area)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Street)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Street)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Village)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Village)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Landmark)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Landmark)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Town)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Town)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.City)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.City)
+            </div>
+            <hr>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.State)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.State)
+            </div>
+            <hr>
+        </div>
+
+        <form asp-action="Delete" method="post" enctype="multipart/form-data">
+            <hr>
+            <input type="hidden" asp-for="Customerid" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,14 +1,18 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using OnlineGroceryStore.AdminDetailsModel;
 using OnlineGroceryStore.Models;
+using OnlineGroceryStore.Models.ApplicationUserModel;
+using OnlineGroceryStore.Models.SignUpUserModel;
+using OnlineGroceryStore.Models.SignInModel;
 
 #nullable disable
 
 namespace OnlineGroceryStore.CategoryProduct
 {
-    public partial class OnlineGroceryStoreDBContext : DbContext
+    public partial class OnlineGroceryStoreDBContext : IdentityDbContext<ApplicationUser>
     {
         public OnlineGroceryStoreDBContext()
         {
@@ -32,7 +36,8 @@ namespace OnlineGroceryStore.CategoryProduct
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=tcp:ogs.database.windows.net,1433;Initial Catalog=OnlineGroceryStoreDB;Persist Security Info=False;User ID=Saburi;Password=Value123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                //optionsBuilder.UseSqlServer("Server=tcp:ogs.database.windows.net,1433;Initial Catalog=OnlineGroceryStoreDB;Persist Security Info=False;User ID=Saburi;Password=Value123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=OnlineGroceryStoreLocal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
 
@@ -266,8 +271,13 @@ namespace OnlineGroceryStore.CategoryProduct
             });
 
             OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<OnlineGroceryStore.Models.SignUpUserModel.SignUpUserModel> SignUpUserModel { get; set; }
+
+        public DbSet<OnlineGroceryStore.Models.SignInModel.SignInModel> SignInModel { get; set; }
     }
 }

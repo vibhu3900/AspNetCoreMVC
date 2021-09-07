@@ -22,12 +22,44 @@ namespace OnlineGroceryStore.Controllers
             return View(products);
         }
 
-        //GET: ProductsController/Details/5
+        //GET: ProductsController/Details
         public ActionResult Details(int id)
         {
-            return View();
+             OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
+             Product prod = ogsd.Products.FirstOrDefault(i => i.Productid == id);
+             return View(prod);
         }
-        
+
+        // POST: ProductsController/Details
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Details(Product obj, IFormFile imgFiles)
+        {
+            //try
+            //{
+            //    OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
+            //    using (MemoryStream ms = new MemoryStream())
+                               
+                //string productname = Request.Form["ProductImage"].ToString();
+
+                //{
+                //   byte[] bt = item.ProductImage;
+                //   string str = Convert.ToBase64String(bt);
+                //   var imgsrc = string.Format("data:image/jpg;base64,{0}", str);
+                //           < img src = "@imgsrc" width = "100" height = "100" alt = "Gr8" />
+
+                //}
+                //Product prod = ogsd.Products.FirstOrDefault(i => i.Productid == obj.Productid);
+                //ogsd.Products.Remove(prod);
+                //ogsd.SaveChanges();
+                //return RedirectToAction(nameof(Index));
+            //}
+            //catch
+            //{
+                return View();
+            //}
+        }
+
         // GET: ProductsController/Create
         public ActionResult Create()
         {

@@ -1,0 +1,42 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<OnlineGroceryStore.Models.ApplicationUserModel.ApplicationUser> _signInManager
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@if (_signInManager.IsSignedIn(User))
+{
+
+    <ul>
+        <li class="dropdown profile_details_drop">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-user" aria-hidden="true">
+                    Hello @User.Identity.Name
+                </i>
+                <span class="caret"></span>
+            </a>
+            <div class="mega-dropdown-menu">
+                <div class="w3ls_vegetables">
+                    <ul class="dropdown-menu drp-mnu">
+                        <li><a asp-action="Index" asp-controller="Customer">Customer Page</a></li>
+                        <li><a asp-action="Logout" asp-controller="Account">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+    </ul>
+}
+else
+{
+    <ul>
+        <li class="dropdown profile_details_drop">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
+            <div class="mega-dropdown-menu">
+                <div class="w3ls_vegetables">
+                    <ul class="dropdown-menu drp-mnu">
+                        <li><a asp-action="Login" asp-controller="Account">Login</a></li>
+                        <li><a asp-action="Signup" asp-controller="Account">Signup</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+    </ul>
+}

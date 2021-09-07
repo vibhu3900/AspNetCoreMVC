@@ -2,8 +2,13 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using OnlineGroceryStore.CategoryProduct;
+using OnlineGroceryStore.Models.ApplicationUserModel;
+using OnlineGroceryStore.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +23,21 @@ namespace OnlineGroceryStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddAuthentication
-               (CookieAuthenticationDefaults.AuthenticationScheme)
-               .AddCookie(option => {
-
-                   option.LoginPath = "/Auth/AdminLogin";
-                   option.AccessDeniedPath = "/Account/NotFound";
-               });
+            services.AddDbContext<OnlineGroceryStoreDBContext>();
+            
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<OnlineGroceryStoreDBContext>();
+            //services.Configure<IdentityOptions>(options =>
+            //{
+            //    options.Password.RequiredLength = 5;
+            //    options.Password.RequiredUniqueChars=1;
+            //    options.Password.RequireDigit =false;
+            //    options.Password.RequireLowercase =false;
+            //    options.Password.RequireUppercase =false;
+            //    options.Password.RequireNonAlphanumeric =false;
+                
+            //});
+            services.AddScoped<IAccountRepository, AccountRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,14 +50,13 @@ namespace OnlineGroceryStore
             app.UseStaticFiles();
             app.UseRouting();
 
-
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                    name: "default",
-                   pattern: "{controller=Auth}/{action=AdminLogin}/{id?}");
+                   pattern: "{controller=Account}/{action=Login}/{id?}");
 
             });
 

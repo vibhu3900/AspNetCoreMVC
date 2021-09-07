@@ -5,9 +5,8 @@
     Layout = null;
 }
 
-
-
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>Grocery Store a Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
@@ -43,6 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <!-- start-smoth-scrolling -->
 </head>
+
 
 <body>
     <!-- header -->
@@ -102,11 +102,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <!-- //script-for sticky-nav -->
 
-
-
-
-
-
     <div class="logo_products">
         <div class="container">
             <div class="w3ls_logo_products_left">
@@ -129,51 +124,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="clearfix"> </div>
         </div>
     </div>
-    <!-- //header -->
+
+
 
 
     <div class="container" style="margin: 5% 30% 10% 30%;">
-        <h3>Are you sure you want to delete this?</h3>
         <div>
-            <h4>Brand</h4>
-            <hr style="width:150px;" />
+
+
+            <h4>Branddetails</h4>
+
+            <hr style="width:100%" />
             <dl class="row">
-                <dt class="col-sm-2">
+                <dt>
                     @Html.DisplayNameFor(model => model.Brandname)
                 </dt>
-                <dd class="col-sm-10">
+                <dd>
                     @Html.DisplayFor(model => model.Brandname)
                 </dd>
-                <dt class="col-sm-2">
+                <dt>
                     @Html.DisplayNameFor(model => model.Contractstartdate)
                 </dt>
-                <dd class="col-sm-10">
+                <dd>
                     @Html.DisplayFor(model => model.Contractstartdate)
                 </dd>
-                @*<dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.ProductImage)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.ProductImage)
-                        @{
-                                    byte[] bt = Model.ProductImage;
-                                    string str = Convert.ToBase64String(bt);
-                                    var imgsrc = string.Format("data:image/jpg;base64,{0}", str);
-                                    <img src="@imgsrc" width="100" height="100" alt="Gr8" />
-                        }
+                <dt>
+                    @Html.DisplayNameFor(model => model.Totalnoofyearcontract)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Totalnoofyearcontract)
+                </dd>
+                <div>
+                    <dt>
+                    @Html.DisplayNameFor(model => model.Brandlogo)
+                </dt>
+                <dd>
+                    @{
+                        byte[] bt = Model.Brandlogo;
+                        string str = Convert.ToBase64String(bt);
+                        var imgsrc = string.Format("data:image/jpg;base64,{0}", str);
+                        <img src="@imgsrc" width="100" height="100" alt="Gr8" />
 
-                    </dd>*@
-
+                    }
+                </dd>
+                </div>
+                
             </dl>
-
-            <form asp-action="Delete" method="post">
-                <input type="hidden" name="DeleteCategoryId" value="@Model.Brandname" asp-for="Brandname" />
-                <input type="submit" onclick="return confirm('Do You Really Wanna Delete..?');" value="Final Delete" class="btn btn-danger" /> |
-                <a asp-action="Index">Back to List</a>
-            </form>
         </div>
 
+        <div>
+            <a asp-action="Details" method="post"></a>
+            <a asp-action="Index">Back to List</a>
+        </div>
     </div>
+
     <!--//Header-->
     <!-- newsletter -->
     <div class="newsletter">
@@ -326,5 +330,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
 </body>
 </html>
-
-

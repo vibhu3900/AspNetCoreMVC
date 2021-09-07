@@ -1,4 +1,4 @@
-﻿﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineGroceryStore.AdminDetailsModel;
 using OnlineGroceryStore.CategoryProduct;
@@ -55,10 +55,24 @@ namespace OnlineGroceryStore.Models
             }
         }
 
+        //GET: ProductsController/Details
+        public ActionResult Details(string id)
+        {
+            OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
+            Branddetail Brd = ogsd.Branddetails.FirstOrDefault(i => i.Brandname == id);
+            return View(Brd);
+        }
+
+        // POST: ProductsController/Details
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Details(Product obj, IFormFile imgFiles)
+        {
+            return View();
+        }
 
 
-
-
+        //GET: ProductsController/Edit
         public ActionResult Edit(string id)
         {
             OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
@@ -99,8 +113,10 @@ namespace OnlineGroceryStore.Models
 
             return RedirectToAction("Index");
 
-
         }
+
+
+
         public ActionResult Delete(string id)
         {
             OnlineGroceryStoreDBContext ogsd = new OnlineGroceryStoreDBContext();
